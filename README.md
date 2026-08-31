@@ -22,9 +22,9 @@ The project uses a deterministic **synthetic bank balance sheet** so the impleme
 | ILAAP framing | base adequacy + severe deficit + recovery capacity + governance limitations |
 | Reproducibility | unit tests, GitHub Actions, generated metrics, figures and risk-committee-style report |
 
-## Why this is high-signal for FSRM
+## Verified local build before CI
 
-Liquidity risk work is not just a ratio calculation. A credible implementation must connect balance-sheet structure, behavioral cash flows, funding concentration, liquid-asset monetisation, severe-but-plausible stress, survival, risk appetite, escalation and feasible recovery actions. This repository demonstrates that end-to-end control chain while keeping every assumption visible.
+The implementation was locally executed before being pushed: all unit tests passed and the deterministic 8,000-account scenario produced internally consistent base, stress, reverse-stress and recovery outputs. GitHub Actions independently regenerates the committed evidence on `main`.
 
 ## Run locally
 
