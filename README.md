@@ -22,10 +22,6 @@ The project uses a deterministic **synthetic bank balance sheet** so the impleme
 | ILAAP framing | base adequacy + severe deficit + recovery capacity + governance limitations |
 | Reproducibility | unit tests, GitHub Actions, generated metrics, figures and risk-committee-style report |
 
-## Verified local build before CI
-
-The implementation was locally executed before being pushed: all unit tests passed and the deterministic 8,000-account scenario produced internally consistent base, stress, reverse-stress and recovery outputs. GitHub Actions independently regenerates the committed evidence on `main`.
-
 ## Run locally
 
 ```bash
