@@ -4,6 +4,19 @@ A reproducible **liquidity-risk and treasury analytics platform** covering cash-
 
 The project uses a deterministic **synthetic bank balance sheet** so the implementation is auditable without pretending that confidential institution data are public. Behavioral/runoff assumptions and recovery capacities are explicitly illustrative.
 
+## Verified reproducible evidence
+
+The current green GitHub Actions pipeline generates the following results from the deterministic synthetic balance sheet:
+
+- **8,000 accounts**, total modeled assets **USD 16.24bn** and off-balance commitments **USD 2.58bn**;
+- base **LCR-style ratio 3.97x**, **NSFR-style ratio 1.76x** and modeled survival horizon **730 days**;
+- combined-severe stress reduces the LCR-style ratio to **0.69x**, shortens modeled survival to **30 days**, and produces a **USD 2.45bn** peak liquidity deficit;
+- modeled recovery capacity is **USD 3.80bn**, covering the severe peak deficit and leaving approximately **USD 1.35bn** after full modeled recovery actions;
+- reverse stress reaches the 30-day liquidity-breach boundary at a **2.70x deposit-run multiplier** under the project's stated assumptions;
+- the final run produces **1 early-warning trigger** and **0 illustrative limit breaches** under the defined risk-appetite thresholds.
+
+These are **synthetic/illustrative model outputs**, not observed bank positions or regulatory ratios. The LCR, NSFR and ILAAP labels in this project are analytical analogues, not regulatory submissions or compliance claims. See `outputs/metrics.json` and `reports/generated/ilaap_assessment.md`.
+
 ## What this repository demonstrates
 
 | Layer | Implementation |
