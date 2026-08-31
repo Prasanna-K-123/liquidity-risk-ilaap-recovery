@@ -1,0 +1,6 @@
+metric,value,limit,operator,status
+LCR-style ratio,3.9653734478717095,1.0,>=,PASS
+NSFR-style ratio,1.7616677930410782,1.0,>=,PASS
+survival horizon days,730.0,30.0,>=,PASS
+30d cumulative gap / assets,-0.11449809716554642,-0.15,>=,PASS
+liquidity buffer / assets,0.582484973118791,0.12,>=,PASS

@@ -1,0 +1,41 @@
+{
+  "base": {
+    "gross_30d_outflows": 4900952445.143354,
+    "hqla": 9460086240.022337,
+    "hqla_to_assets": 0.582484973118791,
+    "lcr": 3.9653734478717095,
+    "net_30d_outflows": 2385673471.712921,
+    "nsfr": 1.7616677930410782,
+    "survival_horizon_days": 730
+  },
+  "ewi_triggers": 1,
+  "ilaap": {
+    "base_lcr": 3.9653734478717095,
+    "base_nsfr": 1.7616677930410782,
+    "post_full_recovery_liquidity": 1351305926.2025795,
+    "recovery_capacity": 3800000000.0,
+    "recovery_covers_peak_deficit": "yes",
+    "severe_lcr": 0.6870880266115553,
+    "severe_peak_liquidity_deficit": 2448694073.7974205,
+    "severe_survival_days": 30
+  },
+  "limit_breaches": 0,
+  "methodology_flags": {
+    "balance_sheet_data": "synthetic illustrative",
+    "behavioral_assumptions": "illustrative",
+    "lcr_nsfr_status": "simplified analytical analogues; not regulatory reporting",
+    "recovery_capacities": "illustrative",
+    "stress_scenarios": "illustrative"
+  },
+  "portfolio": {
+    "accounts": 8000,
+    "off_balance_commitments": 2579598709.755779,
+    "total_assets": 16240910369.533367,
+    "total_liabilities": 24000125651.727028,
+    "wholesale_funding_share": 0.08996383034592804
+  },
+  "reverse_stress": {
+    "breach_deposit_multiplier": 2.7,
+    "minimum_30d_liquidity": -25984417.703516006
+  }
+}

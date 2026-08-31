@@ -1,0 +1,6 @@
+indicator,value,trigger,trigger_direction,status
+base LCR-style,3.9653734478717095,1.1,low,NORMAL
+NSFR-style,1.7616677930410782,1.05,low,NORMAL
+severe survival days,30.0,30.0,low,TRIGGER
+wholesale funding share,0.08996383034592804,0.2,high,NORMAL
+HQLA / assets,0.582484973118791,0.12,low,NORMAL

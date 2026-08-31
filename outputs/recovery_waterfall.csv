@@ -1,0 +1,6 @@
+action,capacity,deployed,post_action_liquidity,target_restored
+central_bank_facility,1200000000.0,1200000000.0,-1248694073.7974205,False
+secured_funding,1000000000.0,1000000000.0,-248694073.7974205,False
+asset_sale,850000000.0,248694073.7974205,0.0,True
+deposit_pricing_campaign,450000000.0,0.0,0.0,True
+new_unsecured_funding,300000000.0,0.0,0.0,True
