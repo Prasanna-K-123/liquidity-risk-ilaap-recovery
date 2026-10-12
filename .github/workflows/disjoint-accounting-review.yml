@@ -1,0 +1,55 @@
+name: Liquidity Disjoint Accounting Review
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - name: Unit and disjoint-resource invariants
+        run: python -m pytest -q
+      - name: Regenerate only synthetic illustrative output
+        run: python run_pipeline.py
+      - name: Printed QA comparison with historical pre-fix metrics
+        run: |
+          python - <<'PY'
+          import json, math
+          from pathlib import Path
+          from src.portfolio import generate_balance_sheet
+          from src.liquidity import hqla_value, lcr_style
+          df = generate_balance_sheet()
+          m = json.loads(Path("outputs/metrics.json").read_text())
+          actual_hqla = float((df.loc[df["is_asset"] & df["product"].eq("treasury_hqla"),"amount"]*
+              (1-df.loc[df["is_asset"] & df["product"].eq("treasury_hqla"),"base_haircut"])).sum())
+          assert math.isclose(m["base"]["hqla"], actual_hqla, rel_tol=1e-12)
+          assert math.isclose(lcr_style(df)["hqla"], actual_hqla, rel_tol=1e-12)
+          print("LIQUIDITY_CORRECTED_METRICS=" + json.dumps({
+            "accounts":m["portfolio"]["accounts"],
+            "total_assets":m["portfolio"]["total_assets"],
+            "total_liabilities":m["portfolio"]["total_liabilities"],
+            "hqla":m["base"]["hqla"],
+            "lcr":m["base"]["lcr"],
+            "nsfr":m["base"]["nsfr"],
+            "severe_lcr":m["ilaap"]["severe_lcr"],
+            "severe_peak_deficit":m["ilaap"]["severe_peak_liquidity_deficit"],
+            "survival_days":m["base"]["survival_horizon_days"],
+            "recovery_capacity":m["ilaap"]["recovery_capacity"],
+            "equity_reconciled":False
+          },sort_keys=True))
+          print("BALANCE_SHEET_SCOPE=synthetic assets/liabilities are NOT equity-reconciled")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: corrected-liquidity-illustrative-evidence
+          path: |
+            outputs/
+            reports/generated/
