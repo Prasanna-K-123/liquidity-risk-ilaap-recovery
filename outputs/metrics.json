@@ -1,23 +1,23 @@
 {
   "base": {
     "gross_30d_outflows": 4900952445.143354,
-    "hqla": 9460086240.022337,
-    "hqla_to_assets": 0.582484973118791,
-    "lcr": 3.9653734478717095,
-    "net_30d_outflows": 2385673471.712921,
+    "hqla": 3679260591.8312864,
+    "hqla_to_assets": 0.22654275580100985,
+    "lcr": 1.1244627806337495,
+    "net_30d_outflows": 3272016339.8895674,
     "nsfr": 1.7616677930410782,
     "survival_horizon_days": 730
   },
   "ewi_triggers": 1,
   "ilaap": {
-    "base_lcr": 3.9653734478717095,
+    "base_lcr": 1.1244627806337495,
     "base_nsfr": 1.7616677930410782,
-    "post_full_recovery_liquidity": 1351305926.2025795,
+    "post_full_recovery_liquidity": -1337518601.139679,
     "recovery_capacity": 3800000000.0,
-    "recovery_covers_peak_deficit": "yes",
-    "severe_lcr": 0.6870880266115553,
-    "severe_peak_liquidity_deficit": 2448694073.7974205,
-    "severe_survival_days": 30
+    "recovery_covers_peak_deficit": "no",
+    "severe_lcr": 0.30999571892463174,
+    "severe_peak_liquidity_deficit": 5137518601.139679,
+    "severe_survival_days": 1
   },
   "limit_breaches": 0,
   "methodology_flags": {
@@ -35,7 +35,7 @@
     "wholesale_funding_share": 0.08996383034592804
   },
   "reverse_stress": {
-    "breach_deposit_multiplier": 2.7,
-    "minimum_30d_liquidity": -25984417.703516006
+    "breach_deposit_multiplier": 1.2,
+    "minimum_30d_liquidity": -66768865.552865505
   }
 }

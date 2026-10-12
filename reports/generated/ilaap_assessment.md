@@ -9,8 +9,8 @@ This repository demonstrates a reproducible **liquidity risk, stress testing, IL
 - Accounts/facilities: **8,000**
 - Total assets: **16,240,910,370**
 - Total liabilities: **24,000,125,652**
-- HQLA-style post-haircut buffer: **9,460,086,240**
-- LCR-style ratio: **3.97x**
+- HQLA-style post-haircut buffer: **3,679,260,592**
+- LCR-style ratio: **1.12x**
 - NSFR-style ratio: **1.76x**
 - Base survival horizon: **730 days**
 
@@ -18,47 +18,47 @@ This repository demonstrates a reproducible **liquidity risk, stress testing, IL
 
 | scenario        |        hqla |   net_30d_outflows |      lcr |   survival_horizon_days |   minimum_post_buffer_liquidity |
 |:----------------|------------:|-------------------:|---------:|------------------------:|--------------------------------:|
-| base            | 9.46009e+09 |        2.38567e+09 | 3.96537  |                     730 |                     7.60053e+09 |
-| idiosyncratic   | 8.16081e+09 |        5.02961e+09 | 1.62256  |                     730 |                     4.08695e+09 |
-| marketwide      | 7.51118e+09 |        3.61091e+09 | 2.08013  |                     730 |                     4.35606e+09 |
-| combined_severe | 5.39986e+09 |        7.85905e+09 | 0.687088 |                      30 |                    -2.44869e+09 |
+| base            | 3.67926e+09 |        3.27202e+09 | 1.12446  |                     730 |                     1.81971e+09 |
+| idiosyncratic   | 3.36943e+09 |        5.91595e+09 | 0.56955  |                      30 |                    -7.04431e+08 |
+| marketwide      | 3.21451e+09 |        4.49725e+09 | 0.714772 |                     730 |                     5.93965e+07 |
+| combined_severe | 2.71103e+09 |        8.74539e+09 | 0.309996 |                       1 |                    -5.13752e+09 |
 
 ## Risk appetite / limit monitoring
 
 | metric                      |      value |   limit | operator   | status   |
 |:----------------------------|-----------:|--------:|:-----------|:---------|
-| LCR-style ratio             |   3.96537  |    1    | >=         | PASS     |
+| LCR-style ratio             |   1.12446  |    1    | >=         | PASS     |
 | NSFR-style ratio            |   1.76167  |    1    | >=         | PASS     |
 | survival horizon days       | 730        |   30    | >=         | PASS     |
 | 30d cumulative gap / assets |  -0.114498 |   -0.15 | >=         | PASS     |
-| liquidity buffer / assets   |   0.582485 |    0.12 | >=         | PASS     |
+| liquidity buffer / assets   |   0.226543 |    0.12 | >=         | PASS     |
 
 ## Early-warning indicators
 
-| indicator               |      value |   trigger | trigger_direction   | status   |
-|:------------------------|-----------:|----------:|:--------------------|:---------|
-| base LCR-style          |  3.96537   |      1.1  | low                 | NORMAL   |
-| NSFR-style              |  1.76167   |      1.05 | low                 | NORMAL   |
-| severe survival days    | 30         |     30    | low                 | TRIGGER  |
-| wholesale funding share |  0.0899638 |      0.2  | high                | NORMAL   |
-| HQLA / assets           |  0.582485  |      0.12 | low                 | NORMAL   |
+| indicator               |     value |   trigger | trigger_direction   | status   |
+|:------------------------|----------:|----------:|:--------------------|:---------|
+| base LCR-style          | 1.12446   |      1.1  | low                 | NORMAL   |
+| NSFR-style              | 1.76167   |      1.05 | low                 | NORMAL   |
+| severe survival days    | 1         |     30    | low                 | TRIGGER  |
+| wholesale funding share | 0.0899638 |      0.2  | high                | NORMAL   |
+| HQLA / assets           | 0.226543  |      0.12 | low                 | NORMAL   |
 
 ## ILAAP-style assessment
 
-- Severe peak liquidity deficit: **2,448,694,074**
+- Severe peak liquidity deficit: **5,137,518,601**
 - Available recovery capacity: **3,800,000,000**
-- Recovery covers peak deficit: **yes**
-- Reverse-stress deposit runoff multiplier producing a 30-day breach: **2.70x**
+- Recovery covers peak deficit: **no**
+- Reverse-stress deposit runoff multiplier producing a 30-day breach: **1.20x**
 
 ## Recovery option waterfall
 
-| action                   |   capacity |    deployed |   post_action_liquidity | target_restored   |
-|:-------------------------|-----------:|------------:|------------------------:|:------------------|
-| central_bank_facility    |    1.2e+09 | 1.2e+09     |            -1.24869e+09 | False             |
-| secured_funding          |    1e+09   | 1e+09       |            -2.48694e+08 | False             |
-| asset_sale               |    8.5e+08 | 2.48694e+08 |             0           | True              |
-| deposit_pricing_campaign |    4.5e+08 | 0           |             0           | True              |
-| new_unsecured_funding    |    3e+08   | 0           |             0           | True              |
+| action                   |   capacity |   deployed |   post_action_liquidity | target_restored   |
+|:-------------------------|-----------:|-----------:|------------------------:|:------------------|
+| central_bank_facility    |    1.2e+09 |    1.2e+09 |            -3.93752e+09 | False             |
+| secured_funding          |    1e+09   |    1e+09   |            -2.93752e+09 | False             |
+| asset_sale               |    8.5e+08 |    8.5e+08 |            -2.08752e+09 | False             |
+| deposit_pricing_campaign |    4.5e+08 |    4.5e+08 |            -1.63752e+09 | False             |
+| new_unsecured_funding    |    3e+08   |    3e+08   |            -1.33752e+09 | False             |
 
 ## Model-risk judgement
 
