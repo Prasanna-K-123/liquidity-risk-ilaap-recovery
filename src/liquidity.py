@@ -7,7 +7,7 @@ from src.config import BASE_RUNOFF, BUCKET_DAYS, LIMITS, TIME_BUCKETS
 
 
 def hqla_value(df: pd.DataFrame, haircut_add: float = 0.0) -> float:
-    assets = df[df["is_asset"]].copy()
+    assets = df[df["is_asset"] & df["product"].eq("treasury_hqla")].copy()
     effective_haircut = np.clip(assets["base_haircut"] + haircut_add, 0.0, 1.0)
     return float((assets["amount"] * (1.0 - effective_haircut)).sum())
 
@@ -23,7 +23,7 @@ def lcr_style(df: pd.DataFrame, deposit_multiplier: float = 1.0, draw_multiplier
 
     facilities = df[df["is_off_balance"]]
     facility_draws = float((facilities["amount"] * np.clip(0.10 * draw_multiplier, 0.0, 1.0)).sum())
-    near_term_assets = df[(df["is_asset"]) & (df["bucket"].isin(["overnight", "2d-7d", "8d-30d"]))]
+    near_term_assets = df[(df["is_asset"]) & (df["product"] != "treasury_hqla") & (df["bucket"].isin(["overnight", "2d-7d", "8d-30d"]))]
     inflows = float((near_term_assets["amount"] * (1.0 - near_term_assets["base_haircut"])).sum())
     recognised_inflows = min(inflows, 0.75 * (cash_outflows + facility_draws))
     net_outflows = max(cash_outflows + facility_draws - recognised_inflows, 1.0)
