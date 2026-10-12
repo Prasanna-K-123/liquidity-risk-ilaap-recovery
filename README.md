@@ -8,14 +8,16 @@ The project uses a deterministic **synthetic bank balance sheet** so the impleme
 
 The current green GitHub Actions pipeline generates the following results from the deterministic synthetic balance sheet:
 
-- **8,000 accounts**, total modeled assets **USD 16.24bn** and off-balance commitments **USD 2.58bn**;
-- base **LCR-style ratio 3.97x**, **NSFR-style ratio 1.76x** and modeled survival horizon **730 days**;
-- combined-severe stress reduces the LCR-style ratio to **0.69x**, shortens modeled survival to **30 days**, and produces a **USD 2.45bn** peak liquidity deficit;
-- modeled recovery capacity is **USD 3.80bn**, covering the severe peak deficit and leaving approximately **USD 1.35bn** after full modeled recovery actions;
-- reverse stress reaches the 30-day liquidity-breach boundary at a **2.70x deposit-run multiplier** under the project's stated assumptions;
+- **8,000 synthetic account records**, modeled assets **USD 16.24bn**, modeled liabilities **USD 24.00bn**, and off-balance commitments **USD 2.58bn**; this is **not an equity-reconciled bank balance sheet**;
+- corrected disjoint opening HQLA **USD 3.679bn** (treasury_hqla only); base **LCR-style ratio 1.124x**, **NSFR-style ratio 1.762x** and modeled base survival horizon **730 days**;
+- combined-severe illustrative stress reduces LCR-style ratio to **0.310x**, shortens the modeled survival horizon to **1 day**, and produces a **USD 5.138bn** peak liquidity deficit;
+- modeled recovery capacity remains **USD 3.80bn** and is **INSUFFICIENT** against the severe peak deficit, leaving about **USD 1.338bn uncovered** after every modeled recovery action;
+- reverse stress reaches the modeled 30-day liquidity-breach boundary at approximately a **1.20x deposit-run multiplier** under the project's stated assumptions;
 - the final run produces **1 early-warning trigger** and **0 illustrative limit breaches** under the defined risk-appetite thresholds.
 
-These are **synthetic/illustrative model outputs**, not observed bank positions or regulatory ratios. The LCR, NSFR and ILAAP labels in this project are analytical analogues, not regulatory submissions or compliance claims. See `outputs/metrics.json` and `reports/generated/ilaap_assessment.md`.
+These are **synthetic/illustrative model outputs**, not observed bank positions or regulatory ratios.
+
+**Accounting correction (12 October 2026):** The previous version incorrectly counted non-treasury loans in the opening liquid-asset buffer and allowed treasury assets to appear again as 30-day maturity inflows. The corrected code counts only `treasury_hqla` in starting HQLA and excludes those same securities from 30-day inflows. The previous public figures (**9.460bn** HQLA, **3.97x** base LCR, **0.69x** severe LCR, **2.45bn** severe deficit, **2.70x** reverse-stress multiplier and a falsely sufficient recovery waterfall) are superseded, remain recoverable from earlier source commits, and must **not** be copied into a current résumé or risk report. [Corrected disjoint-accounting PR and controls](https://github.com/Prasanna-K-123/liquidity-risk-ilaap-recovery/pull/1) · [Matching synthetic-pipeline run](https://github.com/Prasanna-K-123/liquidity-risk-ilaap-recovery/actions/runs/38287063600). The corrected results reproduce the same fixed synthetic accounts and stated assumptions; no bank liquidity regulation, equity-funded balance-sheet identity or real-world recovery is validated. The LCR, NSFR and ILAAP labels in this project are analytical analogues, not regulatory submissions or compliance claims. See `outputs/metrics.json` and `reports/generated/ilaap_assessment.md`.
 
 ## What this repository demonstrates
 
